@@ -5,7 +5,10 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const routes = require('./routes/routes');
 app.use(cors({
-  origin: 'http://localhost:4200', // Your Angular app URL
+  origin: [
+    'http://localhost:4200',  // Local Angular development
+    'https://sakiri.netlify.app',  // Your Netlify domain
+  ],
   credentials: true
 }));
 app.use(express.json());
