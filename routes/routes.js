@@ -7,6 +7,7 @@ routes.post('/auth/register',usersCntrl.registerUser);
 routes.post('/auth/login',usersCntrl.loginUser);
 
 routes.post('/admin/category',categoryCntrl.addCategory);
+routes.get('/admin/category',categoryCntrl.getCategory);
 
 
 

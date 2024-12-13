@@ -1,7 +1,8 @@
 const Category = require('../models/Category');
 
 module.exports = {
-    addCategory:addCategory
+    addCategory:addCategory,
+    getCategory:getCategory
 }
 
 function addCategory(req,res){
@@ -42,4 +43,29 @@ function addCategory(req,res){
             })
         }
     }addCategory().then(function(){})
+}
+
+function getCategory(req,res){
+    async function getCategory(){
+        try{
+            const categories = await Category.find({});
+            if(categories){
+                res.json(categories)
+            }else{
+                res.json([])
+            }
+        }catch(err){
+            res.json({
+                code: 400,
+                data: null,
+                message: 'Exception error occurred'
+            })
+        }
+    }getCategory().then(function(){}).catch(err=>{
+        res.json({
+            code: 500,
+            data: null,
+            message: 'Internal server error'
+        });
+    })
 }
