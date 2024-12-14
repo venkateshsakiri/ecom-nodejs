@@ -2,9 +2,13 @@ const express = require('express');
 const routes = express.Router();
 const usersCntrl = require('../controllers/usersCntrl');
 const categoryCntrl = require('../controllers/categoryCntrl');
+const entitlementCntrl = require('../controllers/entitlmentCntrl');
 
 routes.post('/auth/register',usersCntrl.registerUser);
 routes.post('/auth/login',usersCntrl.loginUser);
+routes.post('/user/entitlements',entitlementCntrl.entitlements);
+routes.get('/user/entitlements',entitlementCntrl.getEntitlements);
+
 
 routes.post('/admin/category',categoryCntrl.addCategory);
 routes.get('/admin/category',categoryCntrl.getCategory);
