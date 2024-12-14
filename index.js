@@ -7,7 +7,8 @@ const routes = require('./routes/routes');
 app.use(cors({
   origin: [
     'http://localhost:4200',  // Local Angular development
-    'https://sakiri.netlify.app',  // Your Netlify domain
+    'https://sakiri.netlify.app',
+    'https://sakiri1.netlify.app'  // Your Netlify domain
   ],
   credentials: true
 }));
