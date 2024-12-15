@@ -6,8 +6,7 @@ const entitlement = new mongoose.Schema({
         unique: true
     },
     role: {
-        type: String,
-        unique: true
+        type: String
     },
     key: {
         type: String,

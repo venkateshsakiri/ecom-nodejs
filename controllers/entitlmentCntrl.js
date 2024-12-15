@@ -8,7 +8,6 @@ module.exports = {
 function entitlements(req,res){
     async function entitlements() {
         try{
-            console.log(req.body)
             const entitlement = new Entitlements({
                 name:req.body.name,
                 key:req.body.key,
@@ -22,7 +21,8 @@ function entitlements(req,res){
                     message:'Entitlement already exists'
                 })
             }else{
-                const result = await Entitlements.insertMany(entitlement);
+                const result = await entitlement.save();
+                // const result = await Entitlements.insertMany(entitlement);
                 if(result){
                     res.json({
                         code:200,
@@ -38,6 +38,7 @@ function entitlements(req,res){
                 }
             }
         }catch(err){
+            console.log(err)
             res.json({
                 code: 400,
                 data: null,
