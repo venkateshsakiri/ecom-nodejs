@@ -8,11 +8,13 @@ module.exports = {
 function entitlements(req,res){
     async function entitlements() {
         try{
+            console.log(req.body)
             const entitlement = new Entitlements({
                 name:req.body.name,
-                key:req.body.key
+                key:req.body.key,
+                role:req.body.role
             })
-            const isEntitlementExist = await Entitlements.findOne({name:req.body.name,key:req.body.key});
+            const isEntitlementExist = await Entitlements.findOne({name:req.body.name,key:req.body.key,role:req.body.role});
             if(isEntitlementExist){
                 res.json({
                     code:200,
@@ -53,8 +55,14 @@ function entitlements(req,res){
 function getEntitlements(req,res){
     async function getEntitlements() {
         try{
-            const entitlementExist = await Entitlements.find({});
-            if(entitlementExist){
+            let query = {};
+            // Add role filter if role is provided in request body
+            if (req.body.role) {
+                query.role = req.body.role;
+            }
+
+            const entitlementExist = await Entitlements.find(query);
+            if(entitlementExist && entitlementExist.length > 0){
                 res.json({
                     code:200,
                     data:entitlementExist,

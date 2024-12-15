@@ -5,6 +5,10 @@ const entitlement = new mongoose.Schema({
         type: String,
         unique: true
     },
+    role: {
+        type: String,
+        unique: true
+    },
     key: {
         type: String,
         required: true,
