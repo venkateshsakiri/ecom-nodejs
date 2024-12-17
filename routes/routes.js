@@ -15,6 +15,7 @@ routes.post('/admin/category',categoryCntrl.addCategory);
 routes.get('/admin/category',categoryCntrl.getCategory);
 
 routes.post('/admin/product',productCntrl.postProducts)
+routes.get('/customer/product',productCntrl.getAllProducts)
 
 
 

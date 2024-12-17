@@ -1,7 +1,8 @@
 const Products = require('../models/Products');
 
 module.exports = {
-    postProducts:postProducts
+    postProducts:postProducts,
+    getAllProducts:getAllProducts
 }
 
 function postProducts(req,res){
@@ -49,6 +50,41 @@ function postProducts(req,res){
             })
         }
     }postProducts().then(function(){}).catch(err=>{
+        res.json({
+            code:500,
+            data:null,
+            message:'Internal server error'
+        })
+    })
+}
+
+function getAllProducts(req,res){
+    async function getAllProducts(){
+        try{
+            const allProducts = await Products.find({});
+            if(allProducts && allProducts.length > 0){
+                res.json({
+                    code:200,
+                    data:allProducts,
+                    size:allProducts.length,
+                    message:'Products fetched successfully!!'
+                })
+            }else{
+                res.json({
+                    code:200,
+                    data:[],
+                    size:allProducts.length,
+                    message:'No Products found!'
+                })
+            }
+        }catch(err){
+            res.json({
+                code: 400,
+                data: null,
+                message: 'Exception error occurred'
+            })
+        }
+    }getAllProducts().then(function(){}).catch(err=>{
         res.json({
             code:500,
             data:null,
